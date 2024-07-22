@@ -1,0 +1,38 @@
+name: Deploy Sphinx Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust if you're using a different branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Ensure the correct Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r docs/requirements.txt  # Ensure this installs Sphinx and any extensions
+
+      - name: Build documentation
+        run: |
+          sphinx-build -b html docs/source docs/build/html  # Adjusted to match directory structure
+
+      - name: List output directory
+        run: |
+          echo "Listing docs/build/html directory"
+          ls -la docs/build/html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build/html 
