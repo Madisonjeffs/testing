@@ -34,5 +34,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Use PAT if GITHUB_TOKEN doesn't work
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token
           publish_dir: ./docs/build/html  # Ensure this matches your output directory
