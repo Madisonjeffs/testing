@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started &#8212; Steamworks Web API 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Endpoints" href="endpoints.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<section id="base-url">
+<h2>Base URL<a class="headerlink" href="#base-url" title="Link to this heading">¶</a></h2>
+<p>The base URL for the API is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>https://api.steampowered.com
+</pre></div>
+</div>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h2>
+<p>For some of the API methods, no authorization will be required. However for other methods with less publicly available data,
+a unique API key may be required.
+The methods that use customer sensitive data will require special access permissions and therefore require a publisher key.
+The special publisher key will need to be created before calling such methods.</p>
+</section>
+<section id="user-keys">
+<h2>User Keys<a class="headerlink" href="#user-keys" title="Link to this heading">¶</a></h2>
+<p>Standard user keys are available to all, as long as a Steam account is held and the domain name associated with this key.</p>
+<p><strong>The agreed terms of use for Steam Web API must be completed first</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>https://steamcommunity.com/dev/apiterms
+</pre></div>
+</div>
+</section>
+<section id="publisher-keys">
+<h2>Publisher Keys<a class="headerlink" href="#publisher-keys" title="Link to this heading">¶</a></h2>
+<p>To create a publisher API key, administrative access must be held within an existing steamworks account.</p>
+<p>To create a publisher key:</p>
+<ul class="simple">
+<li><p>Using the account with administrative access , visit the group list. This is done via Users &amp; Permissions -&gt; Manage Groups.</p></li>
+<li><p>From the list of groups , select or create a group that contains APP ID’s for which access is desired with the WebAPI key.</p></li>
+<li><p>Click into that group to view users and apps within the group.</p></li>
+<li><p>The option to create a web API key should appear on the right hand side , or will be listed if already created.</p></li>
+</ul>
+</section>
+<section id="quick-start-guide">
+<h2>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading">¶</a></h2>
+<p>This quick start guide will walk you through making your first API call to retrieve player summaries.</p>
+<ol class="arabic">
+<li><p><strong>Set Up Your Environment</strong>:
+- Ensure you have Python installed.
+- Install the <cite>requests</cite> library using pip:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>requests
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Make Your First API Call</strong>:
+- Use the following Python script to fetch player summaries:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># Your Steam Web API key</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Steam IDs of players to fetch</span>
+<span class="n">steam_ids</span> <span class="o">=</span> <span class="s1">&#39;76561198006409530,76561197960435530&#39;</span>
+
+<span class="c1"># Endpoint URL</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2?key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&amp;steamids=</span><span class="si">{</span><span class="n">steam_ids</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="c1"># Make the API request</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Check if the request was successful</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Player Summaries:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Analyze the Response</strong>:
+- The response from the API will contain the player summaries for the specified Steam IDs. Here’s an example of the JSON response:</p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;players&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;steamid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;76561198006409530&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;personaname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Player1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profileurl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://steamcommunity.com/id/player1/&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://media.steampowered.com/steamcommunity/public/images/avatars/xx/xx.jpg&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;steamid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;76561197960435530&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;personaname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Player2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profileurl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://steamcommunity.com/id/player2/&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://media.steampowered.com/steamcommunity/public/images/avatars/yy/yy.jpg&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<p>Now that you have successfully made your first API call, you can explore other Steamworks API features such as retrieving game stats, managing achievements, and more. Refer to the detailed endpoint documentation for further guidance.</p>
+<p>For further assistance, please consult the Steamworks Developer documentation or contact the support team.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Steamworks Web API</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-keys">User Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#publisher-keys">Publisher Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-guide">Quick Start Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="endpoints.html">Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Error Handling</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="endpoints.html" title="next chapter">Endpoints</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/getting_started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

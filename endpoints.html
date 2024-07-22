@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Endpoints &#8212; Steamworks Web API 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="endpoints">
+<h1>Endpoints<a class="headerlink" href="#endpoints" title="Link to this heading">¶</a></h1>
+<section id="isteamuser-getplayersummaries">
+<h2>ISteamUser/GetPlayerSummaries<a class="headerlink" href="#isteamuser-getplayersummaries" title="Link to this heading">¶</a></h2>
+<p>Retrieve player summaries for a list of Steam IDs.</p>
+<p><strong>HTTP Method:</strong> <cite>GET</cite></p>
+<p><strong>Endpoint:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ISteamUser/GetPlayerSummaries/v2
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><cite>steamids</cite> (required): Comma-separated list of Steam IDs to fetch data for.</p></li>
+<li><p><cite>key</cite> (required): Your Steam API key.</p></li>
+</ul>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;players&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;steamid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;76561198006409530&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;personaname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Player1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;profileurl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://steamcommunity.com/id/player1/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://media.steampowered.com/steamcommunity/public/images/avatars/xx/xx.jpg&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="isteamnews-getnewsforapp">
+<h2>ISteamNews/GetNewsForApp<a class="headerlink" href="#isteamnews-getnewsforapp" title="Link to this heading">¶</a></h2>
+<p>Retrieve news items for a specific app.</p>
+<p><strong>HTTP Method:</strong> <cite>GET</cite></p>
+<p><strong>Endpoint:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ISteamNews/GetNewsForApp/v2
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><cite>appid</cite> (required): The app ID to fetch news for.</p></li>
+<li><p><cite>count</cite> (optional): Number of news items to retrieve (default is 20).</p></li>
+<li><p><cite>maxlength</cite> (optional): Maximum length for news content (default is unlimited).</p></li>
+<li><p><cite>key</cite> (required): Your Steam API key.</p></li>
+</ul>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;appnews&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;appid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;newsitems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;gid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Update Released&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://store.steampowered.com/news/123456/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_external_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Valve&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;contents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;An update has been released.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;feedlabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Valve&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1625217600</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;feedname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;steam_updates&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;feed_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;appid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="isteamuserstats-getplayerachievements">
+<h2>ISteamUserStats/GetPlayerAchievements<a class="headerlink" href="#isteamuserstats-getplayerachievements" title="Link to this heading">¶</a></h2>
+<p>Retrieve a list of achievements completed by a user for a specific game.</p>
+<p><strong>HTTP Method:</strong> <cite>GET</cite></p>
+<p><strong>Endpoint:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ISteamUserStats/GetPlayerAchievements/v1
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><cite>steamid</cite> (required): Steam ID of the user.</p></li>
+<li><p><cite>appid</cite> (required): The application ID of the game.</p></li>
+<li><p><cite>key</cite> (required): Your Steam API key.</p></li>
+<li><p><cite>l</cite> (optional): Language for the response (e.g., “en” for English).</p></li>
+</ul>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;playerstats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;steamID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;76561198006409530&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gameName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Game Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;achievements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;apiname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACH_WIN_ONE_GAME&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;achieved&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unlocktime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1588364923</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;apiname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACH_WIN_TWO_GAMES&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;achieved&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unlocktime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="isteamuserstats-getuserstatsforgame">
+<h2>ISteamUserStats/GetUserStatsForGame<a class="headerlink" href="#isteamuserstats-getuserstatsforgame" title="Link to this heading">¶</a></h2>
+<p>Retrieve user statistics for a specific game.</p>
+<p><strong>HTTP Method:</strong> <cite>GET</cite></p>
+<p><strong>Endpoint:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ISteamUserStats/GetUserStatsForGame/v2
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><cite>steamid</cite> (required): Steam ID of the user.</p></li>
+<li><p><cite>appid</cite> (required): The application ID of the game.</p></li>
+<li><p><cite>key</cite> (required): Your Steam API key.</p></li>
+</ul>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;playerstats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;steamID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;76561198006409530&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gameName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Game Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;total_kills&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3407</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;total_deaths&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1278</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="isteamgameserver-getserverinfo">
+<h2>ISteamGameServer/GetServerInfo<a class="headerlink" href="#isteamgameserver-getserverinfo" title="Link to this heading">¶</a></h2>
+<p>Retrieve information about a game server.</p>
+<p><strong>HTTP Method:</strong> <cite>GET</cite></p>
+<p><strong>Endpoint:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ISteamGameServer/GetServerInfo/v1
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><cite>serverids</cite> (required): Comma-separated list of server IDs.</p></li>
+<li><p><cite>key</cite> (required): Your Steam API key.</p></li>
+</ul>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;serverid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90071996842377217&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Server Name&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;appID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;gameDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tf&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.1:27015&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Steamworks Web API</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#isteamuser-getplayersummaries">ISteamUser/GetPlayerSummaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#isteamnews-getnewsforapp">ISteamNews/GetNewsForApp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#isteamuserstats-getplayerachievements">ISteamUserStats/GetPlayerAchievements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#isteamuserstats-getuserstatsforgame">ISteamUserStats/GetUserStatsForGame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#isteamgameserver-getserverinfo">ISteamGameServer/GetServerInfo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Error Handling</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="getting_started.html" title="previous chapter">Getting Started</a></li>
+      <li>Next: <a href="examples.html" title="next chapter">Examples</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/endpoints.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
