@@ -39,4 +39,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          publish_branch: gh-pages  # Ensure this matches the branch you want to deploy to
           publish_dir: ./docs/build/html  # Ensure this matches your output directory
+
