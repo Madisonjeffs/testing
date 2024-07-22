@@ -26,6 +26,10 @@ jobs:
         run: |
           sphinx-build -b html docs/source docs/build/html  # Adjusted to match your directory structure
 
+      - name: Create .nojekyll file
+        run: |
+          touch docs/build/html/.nojekyll  # Create the .nojekyll file to disable Jekyll processing
+
       - name: List output directory
         run: |
           echo "Listing docs/build/html directory"
