@@ -32,6 +32,10 @@ jobs:
           echo "Listing docs/build/html directory"
           ls -la docs/build/html
 
+      - name: Verify .nojekyll file
+        run: |
+          if [ ! -f docs/build/html/.nojekyll ]; then echo ".nojekyll file not found!"; exit 1; fi
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
