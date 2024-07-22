@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -26,10 +27,6 @@ jobs:
         run: |
           sphinx-build -b html docs/source docs/build/html  # Adjusted to match your directory structure
 
-      - name: Create .nojekyll file
-        run: |
-          touch docs/build/html/.nojekyll  # Create the .nojekyll file to disable Jekyll processing
-
       - name: List output directory
         run: |
           echo "Listing docs/build/html directory"
@@ -41,4 +38,3 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_branch: gh-pages  # Ensure this matches the branch you want to deploy to
           publish_dir: ./docs/build/html  # Ensure this matches your output directory
-
